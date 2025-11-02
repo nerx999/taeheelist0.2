@@ -1,0 +1,118 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Exo 2', sans-serif;
+  background: #000;
+  color: white;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-content {
+  text-align: center;
+}
+
+.hero-text {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 4rem;
+  color: #0ff;
+  text-shadow: 0 0 10px #0ff;
+  margin: 0;
+}
+
+.hero-subtext {
+  margin-top: 1rem;
+  color: #aaa;
+  letter-spacing: 2px;
+}
+
+.btn-discord {
+  display: inline-block;
+  background: linear-gradient(135deg, #6e48aa, #9d50bb);
+  color: white;
+  padding: 12px 30px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: bold;
+  margin: 1rem 0;
+  box-shadow: 0 0 15px rgba(106, 72, 170, 0.5);
+}
+
+.groups-row {
+  margin-top: 2rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.group-btn {
+  padding: 10px 20px;
+  background: #111;
+  color: #9d50bb;
+  text-decoration: none;
+  border: 2px solid #9d50bb;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: all 0.3s;
+}
+
+footer {
+  text-align: center;
+  padding: 1.5rem;
+  margin-top: auto;
+  border-top: 1px solid #333;
+  color: #888;
+  font-size: 0.9rem;
+}
+
+footer a {
+  color: #0ff;
+  text-decoration: none;
+}
+
+/* NAV */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid #333;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.8rem;
+  color: #0ff;
+  text-shadow: 0 0 10px #0ff;
+  letter-spacing: 2px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  margin-left: 1.5rem;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: #0ff;
+}

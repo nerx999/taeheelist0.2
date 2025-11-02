@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>เข้าสู่ระบบ — TAEHEE 666</title>
+  <link rel="icon" href="image/png/icon.ico" type="image/ico">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Exo+2:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav class="nav">
+    <div class="logo">TAEHEE 666</div>
+    <div class="nav-links">
+      <a href="index.html">กลับหน้าหลัก</a>
+    </div>
+  </nav>
+
+  <div class="login-container">
+    <div class="login-header">
+      <h2>🔐 เข้าสู่ระบบ</h2>
+      <p>สำหรับสมาชิกที่ได้รับสิทธิ์เท่านั้น</p>
+    </div>
+
+    <div class="note-box">
+      ⚠️ <strong>บัญชีและรหัสผ่านจะถูกจัดเตรียมโดยแอดมินเท่านั้น</strong><br>
+      หากยังไม่ได้รับ โปรดติดต่อแอดมิน
+    </div>
+
+    <div id="alertBox" class="alert"></div>
+
+    <form id="loginForm">
+      <div class="form-group">
+        <label for="username" class="form-label">ชื่อผู้ใช้</label>
+        <input type="text" id="username" class="form-input" autocomplete="off" required />
+      </div>
+      <div class="form-group">
+        <label for="password" class="form-label">รหัสผ่าน</label>
+        <input type="password" id="password" class="form-input" required />
+      </div>
+      <button type="submit" class="btn-login">เข้าสู่ระบบ</button>
+    </form>
+
+    <div class="footer-note">© TAEHEE ONLY — The Legacy Never Ends</div>
+  </div>
+
+  <script src="js/device.js"></script>
+  <script src="js/users.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/login.js"></script>
+</body>
+</html>
