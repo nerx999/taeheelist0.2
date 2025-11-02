@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <title>Member Dashboard — TAEHEE 666</title>
+  <link rel="stylesheet" href="../css/main.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+  <style>
+    .member-container {
+      max-width: 800px;
+      margin: 3rem auto;
+      padding: 2rem;
+      background: #0a0a0a;
+      border-radius: 16px;
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.2);
+      text-align: center;
+    }
+    .role-tag {
+      background: #0ff;
+      color: black;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+      display: inline-block;
+    }
+    .family-card {
+      background: #111;
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      text-align: left;
+      border-left: 4px solid #0ff;
+    }
+    .family-img {
+      width: 100%;
+      max-height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+    .feature-list {
+      list-style: none;
+      padding: 0;
+      margin: 1rem 0;
+    }
+    .feature-list li {
+      padding: 8px 12px;
+      background: rgba(0, 255, 255, 0.1);
+      margin: 5px 0;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+    }
+    .feature-list li::before {
+      content: "✅";
+      margin-right: 8px;
+      color: #0f0;
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="logo">TAEHEE 666</div>
+    <div class="nav-links">
+      <a href="../index.html">หน้าหลัก</a>
+      <a href="#" onclick="logout()">ออกจากระบบ</a>
+    </div>
+  </nav>
+
+  <div class="member-container">
+    <h1 style="color: #0ff; text-shadow: 0 0 10px #0ff;">👁️ MEMBER DASHBOARD</h1>
+    <p id="welcomeMsg" style="margin: 1.5rem 0; font-size: 1.2rem;">ยินดีต้อนรับ, <span id="userName"></span></p>
+    <div class="role-tag">ยศ: MEMBER</div>
+    <div class="role-tag" id="userFamily">ตระกูล: ...</div>
+
+    <div style="margin-top: 2rem; text-align: left;">
+      <h3>คุณสามารถ:</h3>
+      <ul class="feature-list">
+        <li>ดูรายชื่อสมาชิกในตระกูลของคุณ</li>
+        <li>ดูประวัติการเข้าใช้งานของคุณ</li>
+        <li>แชทกับสมาชิกในตระกูล</li>
+        <li>เข้าถึงเนื้อหาเฉพาะตระกูล</li>
+        <li>ดูภาพและวิดีโอที่เกี่ยวข้องกับตระกูล</li>
+      </ul>
+    </div>
+
+    <!-- แสดงข้อมูลตระกูลของผู้ใช้ -->
+    <div class="family-card" id="myFamilyCard">
+      <h3 id="familyTitle">...</h3>
+      <img id="familyImg" src="" alt="Your Family" class="family-img">
+      <p id="familyDesc">...</p>
+    </div>
+  </div>
+
+  <script src="../js/auth.js"></script>
+  <script>
+    const user = checkAuth();
+    if (!user || user.role === 'admin') {
+      window.location.href = '../login.html';
+    }
+    document.getElementById('userName').textContent = user.username;
+    document.getElementById('userFamily').textContent = `ตระกูล: ${user.family}`;
+
+
+    const myFamily = familyData[user.family];
+    if (myFamily) {
+      document.getElementById('familyTitle').textContent = myFamily.title;
+      document.getElementById('familyImg').src = myFamily.img;
+      document.getElementById('familyDesc').textContent = myFamily.desc;
+    }
+  </script>
+</body>
+</html>

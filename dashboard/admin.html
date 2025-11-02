@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Panel — TAEHEE 666</title>
+  <link rel="icon" href="../image/png/icon.ico" type="image/ico">
+  <link rel="stylesheet" href="../css/main.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+  <style>
+    .admin-container {
+      max-width: 900px;
+      margin: 3rem auto;
+      padding: 2rem;
+      background: #0a0a0a;
+      border-radius: 16px;
+      box-shadow: 0 0 30px rgba(157, 80, 187, 0.4);
+      text-align: center;
+    }
+    .role-tag {
+      background: #ff0055;
+      color: white;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+      display: inline-block;
+    }
+    .member-card {
+      background: #111;
+      border-radius: 12px;
+      padding: 1rem;
+      margin: 0.8rem 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border: 1px solid #333;
+      position: relative;
+    }
+    .avatar {
+      width: 40px;
+      height: 40px;
+      background: #333;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: white;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+    .info {
+      flex: 1;
+      margin-left: 1rem;
+      text-align: left;
+    }
+    .name {
+      font-weight: bold;
+      color: #0ff;
+    }
+    .link {
+      color: #aaa;
+      font-size: 0.9rem;
+      word-break: break-all;
+    }
+    .fb-btn {
+      background: #3b5998;
+      color: white;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      text-decoration: none;
+      transition: all 0.3s;
+      flex-shrink: 0;
+    }
+    .fb-btn:hover {
+      background: #2d4373;
+      transform: scale(1.1);
+    }
+    .delete-btn {
+      margin-left: 10px;
+      padding: 4px 8px;
+      background: #ff4444;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      flex-shrink: 0;
+    }
+    .delete-btn:hover {
+      background: #ff0000;
+    }
+    .add-form {
+      background: #111;
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin: 1.5rem 0;
+      text-align: left;
+    }
+    .form-group {
+      margin-bottom: 1rem;
+    }
+    .form-label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #ddd;
+    }
+    .form-input {
+      width: 100%;
+      padding: 8px;
+      background: #222;
+      border: 1px solid #444;
+      color: white;
+      border-radius: 6px;
+    }
+    .btn-add {
+      width: 100%;
+      padding: 10px;
+      background: linear-gradient(135deg, #6e48aa, #9d50bb);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .btn-add:hover {
+      background: #8a44a0;
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="logo">TAEHEE 666</div>
+    <div class="nav-links">
+      <a href="../index.html">หน้าหลัก</a>
+      <a href="#" onclick="logout()">ออกจากระบบ</a>
+    </div>
+  </nav>
+
+  <div class="admin-container">
+    <h1 style="color: #ff0055; text-shadow: 0 0 10px #ff0055;">👑 ADMIN PANEL</h1>
+    <p id="welcomeMsg" style="margin: 1.5rem 0; font-size: 1.2rem;">ยินดีต้อนรับ, <span id="userName"></span></p>
+    <div class="role-tag">ยศ: ADMIN</div>
+    <div class="role-tag" id="userFamily">ตระกูล: ...</div>
+
+    <div style="margin-top: 2rem; text-align: left;">
+      <h3>คุณสามารถ:</h3>
+      <ul style="color: #ccc; margin-top: 1rem; padding-left: 1.5rem;">
+        <li>ดูรายชื่อสมาชิกทั้งหมดจากทุกตระกูล</li>
+        <li>เพิ่ม/ลบรายชื่อสมาชิกแบบ Realtime</li>
+        <li>จัดการสิทธิ์การเข้าถึง</li>
+      </ul>
+    </div>
+
+    <!-- ฟอร์มเพิ่มสมาชิก -->
+    <div class="add-form">
+      <h3>➕ เพิ่มสมาชิกใหม่</h3>
+      <div class="form-group">
+        <label for="newName" class="form-label">ชื่อ</label>
+        <input type="text" id="newName" class="form-input" placeholder="เช่น Latae Taehee" />
+      </div>
+      <div class="form-group">
+        <label for="newLink" class="form-label">ลิงก์ Facebook</label>
+        <input type="text" id="newLink" class="form-input" placeholder="เช่น facebook.com/latae.taehee" />
+      </div>
+      <div class="form-group">
+        <label for="newAvatar" class="form-label">ตัวย่อ (Avatar)</label>
+        <input type="text" id="newAvatar" class="form-input" placeholder="เช่น L, B, K" maxlength="1" />
+      </div>
+      <button class="btn-add" id="addMemberBtn">เพิ่มสมาชิก</button>
+    </div>
+
+    <!-- แสดงรายชื่อ -->
+    <div style="margin-top: 2rem; text-align: left;">
+      <h3>📋 รายชื่อสมาชิกทั้งหมด</h3>
+      <div id="memberList" style="margin-top: 1rem;"></div>
+    </div>
+  </div>
+
+  <script src="../js/device.js"></script>
+  <script src="../js/users.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/members.js"></script>
+  <script>
+    // ตรวจสอบสิทธิ์
+    const user = checkAuth();
+    if (!user || user.role !== 'admin') {
+      window.location.href = '../login.html';
+    }
+    document.getElementById('userName').textContent = user.username;
+    document.getElementById('userFamily').textContent = `ตระกูล: ${user.family}`;
+
+    // โหลดและแสดงผล
+    loadMembers();
+    renderMembers();
+
+    // เพิ่มสมาชิก
+    document.getElementById('addMemberBtn').addEventListener('click', () => {
+      const name = document.getElementById('newName').value.trim();
+      const link = document.getElementById('newLink').value.trim();
+      const avatar = document.getElementById('newAvatar').value.trim().toUpperCase();
+
+      if (name && link && avatar) {
+        addMember(name, link, avatar);
+        document.getElementById('newName').value = '';
+        document.getElementById('newLink').value = '';
+        document.getElementById('newAvatar').value = '';
+      } else {
+        alert('❌ กรุณากรอกข้อมูลให้ครบถ้วน');
+      }
+    });
+  </script>
+</body>
+</html>

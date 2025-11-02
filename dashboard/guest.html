@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <title>Guest Area — TAEHEE 666</title>
+  <link rel="stylesheet" href="../css/main.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+  <style>
+    .guest-container {
+      max-width: 700px;
+      margin: 3rem auto;
+      padding: 2rem;
+      background: #0a0a0a;
+      border-radius: 16px;
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+      text-align: center;
+    }
+    .role-tag {
+      background: #aaa;
+      color: black;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+      display: inline-block;
+    }
+    .family-card {
+      background: #111;
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      text-align: left;
+      border-left: 4px solid #aaa;
+    }
+    .family-img {
+      width: 100%;
+      max-height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+    .feature-list {
+      list-style: none;
+      padding: 0;
+      margin: 1rem 0;
+    }
+    .feature-list li {
+      padding: 8px 12px;
+      background: rgba(255, 255, 255, 0.05);
+      margin: 5px 0;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+    }
+    .feature-list li::before {
+      content: "ℹ️";
+      margin-right: 8px;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="logo">TAEHEE 666</div>
+    <div class="nav-links">
+      <a href="../index.html">หน้าหลัก</a>
+      <a href="#" onclick="logout()">ออกจากระบบ</a>
+    </div>
+  </nav>
+
+  <div class="guest-container">
+    <h1 style="color: #aaa; text-shadow: 0 0 10px #aaa;">BEN10 BENEFIT</h1>
+    <div class="role-tag" id="userFamily">ตระกูล: BEN10</div>
+
+    <div style="margin-top: 2rem; text-align: left;">
+      <h3>คุณสามารถ:</h3>
+      <ul class="feature-list">
+        <li>ดูข้อมูลเบื้องต้นของตระกูลที่คุณสังกัด</li>
+        <li>ดูรายชื่อสมาชิกบางส่วน (จำกัด)</li>
+        <li>ดูภาพและวิดีโอที่เปิดเผยสู่สาธารณะ</li>
+        <li>ติดต่อแอดมินเพื่อขอสิทธิ์เพิ่มเติม</li>
+      </ul>
+    </div>
+
+    <!-- แสดงข้อมูลตระกูลของผู้ใช้ -->
+    <div class="family-card" id="myFamilyCard">
+      <h3 id="familyTitle">...</h3>
+      <img id="familyImg" src="" alt="Your Family" class="family-img">
+      <p id="familyDesc">...</p>
+    </div>
+  </div>
+
+  <script src="../js/auth.js"></script>
+  <script>
+    const user = checkAuth();
+    if (!user || user.role !== 'guest') {
+      window.location.href = '../login.html';
+    }
+    document.getElementById('userName').textContent = user.username;
+    document.getElementById('userFamily').textContent = `ตระกูล: ${user.family}`;
+
+    // แสดงข้อมูลตระกูลของผู้ใช้
+    const familyData = {
+      "TAEHEE": {
+        title: "🌟 ตระกูล TAEHEE",
+        img: "../image/family/taehee.jpg",
+        desc: "ตระกูลแห่งความลึกลับและพลังงานมืด — ผู้นำคือ TAEHEE เอง"
+      },
+      "ben10": {
+        title: "🤖 ตระกูล BEN10",
+        img: "../image/family/ben10.jpg",
+        desc: "ตระกูลแห่งเทคโนโลยีและพลังอัลติเมท — ควบคุมพลังจาก Omnitrix"
+      },
+      "ONLYFAN": {
+        title: "🔥 ตระกูล ONLYFAN",
+        img: "image/family",
+        desc: "ตระกูลแห่งความงามและความลับ — ผู้นำคือ LILY และ RAVEN"
+      }
+    };
+
+    const myFamily = familyData[user.family];
+    if (myFamily) {
+      document.getElementById('familyTitle').textContent = myFamily.title;
+      document.getElementById('familyImg').src = myFamily.img;
+      document.getElementById('familyDesc').textContent = myFamily.desc;
+    }
+  </script>
+</body>
+</html>

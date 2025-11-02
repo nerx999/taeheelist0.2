@@ -24,6 +24,12 @@
   text-shadow: 0 0 10px #0ff;
 }
 
+.login-header p {
+  color: #aaa;
+  font-size: 0.95rem;
+  margin-bottom: 1.5rem;
+}
+
 .note-box {
   background: rgba(157, 80, 187, 0.1);
   border: 1px solid #9d50bb;
@@ -32,6 +38,10 @@
   margin-bottom: 1.8rem;
   color: #ccc;
   font-size: 0.95rem;
+}
+
+.note-box strong {
+  color: #9d50bb;
 }
 
 .form-group {
@@ -44,6 +54,7 @@
   margin-bottom: 0.5rem;
   color: #ddd;
   font-weight: 600;
+  font-size: 1rem;
 }
 
 .form-input {
@@ -54,6 +65,13 @@
   border-radius: 8px;
   color: white;
   font-size: 1rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #9d50bb;
+  box-shadow: 0 0 10px rgba(157, 80, 187, 0.3);
 }
 
 .btn-login {
@@ -64,8 +82,15 @@
   border: none;
   border-radius: 8px;
   font-weight: bold;
+  font-size: 1.1rem;
   cursor: pointer;
+  transition: all 0.3s ease;
   box-shadow: 0 0 15px rgba(106, 72, 170, 0.5);
+}
+
+.btn-login:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 20px rgba(106, 72, 170, 0.8);
 }
 
 .alert {
@@ -88,7 +113,11 @@
   font-size: 0.85rem;
 }
 
+/* Responsive */
 @media (max-width: 500px) {
-  .login-container { padding: 1.8rem; margin: 2rem auto; }
+  .login-container {
+    padding: 1.8rem;
+    margin: 2rem auto;
+  }
   .login-header h2 { font-size: 1.8rem; }
 }
